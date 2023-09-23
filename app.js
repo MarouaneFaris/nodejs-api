@@ -4,7 +4,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { json } from "node:stream/consumers";
 
 createServer(async (request, response) => {
-    const requestUrl = (new URL(request.url, request.headers.host));
+    const requestUrl = (new URL(request.url, `http://${request.headers.host}`));
 
     if (requestUrl.pathname !== '/todo') {
         response.writeHead(404);
@@ -109,4 +109,4 @@ createServer(async (request, response) => {
     }
 
     response.end();
-}).listen(8888);
+}).listen(3000);
